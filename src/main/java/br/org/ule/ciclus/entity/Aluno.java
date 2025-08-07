@@ -3,7 +3,6 @@ package br.org.ule.ciclus.entity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 @Entity
@@ -20,7 +19,6 @@ public class Aluno {
     @NotBlank
     private String email;
 
-    @NotNull
     @Enumerated(EnumType.STRING)
     private Turma turma;
 
@@ -28,12 +26,12 @@ public class Aluno {
     @JoinColumn(name = "monitor_id") // Chave estrangeira na tabela Alunos
     private Monitor monitor;
 
-// Construtor vazio para o Spring
+    // Construtor vazio para o Spring
     public Aluno(){
 
     }
 
-// Getters e Setters
+    // Getters e Setters
     public String getNome() {
         return nome;
     }

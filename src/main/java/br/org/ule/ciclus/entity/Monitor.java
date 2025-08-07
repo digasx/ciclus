@@ -3,7 +3,6 @@ package br.org.ule.ciclus.entity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 import java.util.ArrayList;
@@ -23,14 +22,13 @@ public class Monitor {
     @NotBlank
     private String email;
 
-    @NotNull
     @Enumerated(EnumType.STRING)
     private Turma turma;
 
     @OneToMany(mappedBy = "monitor")
     private List<Aluno> alunos = new ArrayList<>();
 
-//Construtor vazio
+//Construtor vazio para o Spring
     public Monitor(){
 
     }
