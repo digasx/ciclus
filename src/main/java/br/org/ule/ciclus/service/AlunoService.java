@@ -5,11 +5,13 @@ import br.org.ule.ciclus.dto.AlunoResponseDto;
 import br.org.ule.ciclus.entity.Aluno;
 import br.org.ule.ciclus.entity.Monitor;
 import br.org.ule.ciclus.entity.Turma;
+import br.org.ule.ciclus.error.ResourceNotFoundException;
 import br.org.ule.ciclus.mapper.AlunoMapper;
 import br.org.ule.ciclus.repository.AlunoRepository;
 import br.org.ule.ciclus.repository.MonitorRepository;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
+import org.springdoc.api.OpenApiResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,8 +33,12 @@ public class AlunoService {
 
     // Criar alunos
     public AlunoResponseDto criarAluno (AlunoRequestDto dto) {
-        Monitor monitor = monitorRepository.findById(dto.getMonitorId())
-                .orElseThrow(() -> new EntityNotFoundException("Monitor não foi encontrado."));
+        Monitor monitor = null;
+        if (dto.getMonitorId() != null){
+            monitor = monitorRepository.findById(dto.getMonitorId())
+                    .orElse(null);
+
+        }
 
         Aluno aluno = AlunoMapper.toEntity(dto, monitor);
         Aluno salvo = alunoRepository.save(aluno);
@@ -64,14 +70,16 @@ public class AlunoService {
     //Atualizar dados do Aluno
     public AlunoResponseDto update(Long id, @Valid AlunoRequestDto dto) {
         Aluno alunoSelecionado = alunoRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Aluno não encontrado"));
+                .orElseThrow(() -> new ResourceNotFoundException("Aluno não encontrado"));
 
         Monitor monitor = monitorRepository.findById(dto.getMonitorId())
-                .orElseThrow(() -> new EntityNotFoundException("Monitor não encontrado"));
+                .orElseThrow(() -> new ResourceNotFoundException("Monitor não encontrado"));
 
         alunoSelecionado.setNome(dto.getNome());
-        alunoSelecionado.setTurma(dto.getTurma());
+        alunoSelecionado.setEmail(dto.getEmail());
+        alunoSelecionado.setTurma(Turma.deString(dto.getTurma()));
         alunoSelecionado.setMonitor(monitor);
+
 
         Aluno atualizado = alunoRepository.save(alunoSelecionado);
 

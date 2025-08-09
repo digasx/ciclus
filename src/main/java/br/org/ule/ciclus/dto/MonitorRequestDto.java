@@ -3,8 +3,7 @@ package br.org.ule.ciclus.dto;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 
-public class AlunoRequestDto {
-
+public class MonitorRequestDto {
     @NotBlank(message = "O nome precisa ser informado.")
     private String nome;
 
@@ -14,24 +13,15 @@ public class AlunoRequestDto {
     @NotBlank(message = "A turma precisa ser informada.")
     private String turma;
 
-    //@NotNull(message = "O Id do monitor associado precisa ser informado.")
-    private Long monitorId;
 
-    // Construtor para o Spring
-    public AlunoRequestDto(){
 
-    }
-
-    public AlunoRequestDto(String nome, String email, String turma, Long monitorId) {
-        this.nome = nome;
-        this.email = email;
-        this.turma = turma;
-        this.monitorId = monitorId;
-    }
-
-    // Getters e setters
+    //Getter e setters
     public String getNome() {
         return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public String getEmail() {
@@ -42,23 +32,11 @@ public class AlunoRequestDto {
         this.email = email;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
     public String getTurma() {
         return turma;
     }
 
     public void setTurma(String turma) {
         this.turma = turma;
-    }
-
-    public Long getMonitorId() {
-        return monitorId;
-    }
-
-    public void setMonitorId(Long monitorId) {
-        this.monitorId = monitorId;
     }
 }

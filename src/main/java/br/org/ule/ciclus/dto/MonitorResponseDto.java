@@ -1,31 +1,22 @@
 package br.org.ule.ciclus.dto;
 
-import br.org.ule.ciclus.entity.Turma;
-
-public class AlunoResponseDto {
+public class MonitorResponseDto {
     private Long id;
     private String nome;
     private String email;
     private String turma;
-    private Long monitorId;
-    private String monitorNome;
 
-    //Construtor vazio para o Spring
-    public AlunoResponseDto(){
+    public MonitorResponseDto(){
     }
-    // Construtor
-    public AlunoResponseDto(Long id, String nome, String email, String turma, Long monitorId, String monitorNome){
+
+    public MonitorResponseDto(long id, String nome, String email, String turma) {
         this.id = id;
         this.nome = nome;
         this.email = email;
         this.turma = turma;
-        this.monitorId = monitorId;
-        this.monitorNome = monitorNome;
     }
 
-
-
-    // Getter e setters
+    //Getter e setters
     public Long getId() {
         return id;
     }
@@ -56,21 +47,5 @@ public class AlunoResponseDto {
 
     public void setTurma(String turma) {
         this.turma = turma;
-    }
-
-    public Long getMonitorId() {
-        return monitorId;
-    }
-
-    public void setMonitorId(Long monitorId) {
-        this.monitorId = monitorId;
-    }
-
-    public String getMonitorNome() {
-        return monitorNome;
-    }
-
-    public void setMonitorNome(String monitorNome) {
-        this.monitorNome = monitorNome;
     }
 }

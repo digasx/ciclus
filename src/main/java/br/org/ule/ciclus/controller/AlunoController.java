@@ -6,7 +6,6 @@ import br.org.ule.ciclus.entity.Turma;
 import br.org.ule.ciclus.service.AlunoService;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,14 +24,14 @@ public class AlunoController {
         this.alunoService = alunoService;
     }
 
-    //Criar aluno
+    //POST - Criar aluno
     @PostMapping
     public ResponseEntity<AlunoResponseDto> criarAluno(@RequestBody @Valid AlunoRequestDto dto){
         AlunoResponseDto response = alunoService.criarAluno(dto);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
-    //Buscar todos os Alunos
+    //GET Buscar todos os Alunos
     @GetMapping
     public List<AlunoResponseDto> getAllAlunos(){
         return alunoService.getAllAlunos();
