@@ -9,9 +9,7 @@ import br.org.ule.ciclus.error.ResourceNotFoundException;
 import br.org.ule.ciclus.mapper.AlunoMapper;
 import br.org.ule.ciclus.repository.AlunoRepository;
 import br.org.ule.ciclus.repository.MonitorRepository;
-import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
-import org.springdoc.api.OpenApiResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
